@@ -1,0 +1,35 @@
+
+ASM EXPERIMENTS... THAT ACTUALLY WORK
+
+By Kristof Aldenderfer
+Stolen from asmtutor.com, and modified to work on 64-bit OSX.
+
+WELCOME to terribly documented code. Use this as an example of how not to describe your project. Here are the steps you need to take in order for these suckers to assemble, link, and execute correctly:
+
+	[1] update NASM. "nasm -v" will give you your version number. I'm currently running 2.11.05. The update will allow you to assemble macho64 versions of your code.
+		-- http://www.nasm.us/pub/nasm/releasebuilds/2.11.05/nasm-2.11.05.tar.gz
+		-- extract to a directory
+		-- in terminal, navigate to that directory
+		-- "./configure"
+		-- "sudo make install"
+		-- "nasm -v" to confirm
+	[2] To process the examples, you have two choices:
+		[-]	-- "nasm -f macho64 helloworld.asm"
+			-- "ld helloworld.o"
+			-- "./a.out"
+		[-] Use the shell script asm64.sh. You'll need to set permissions of it first:
+			-- "chmod 777 asm64.sh" (for the record, this gives it too many permissions, I think)
+			Then you can call it with:
+			-- "./asm64.sh helloworld"
+
+HERE IS SPECULATION SECTION, WHERE I CONJECT ON HOW TO INCLUDE ASM() EMITS IN YOUR COMPILER:
+
+I think the first step is just to get your program to print one goddamn line using assembly. Set up as follows:
+	[1] Your example code should only have one print statement.
+	[2] The asm() function in program node should generate a header, then cascade down thru to make the body, and when it gets back, it should generate a footer.
+	[3] If you take a look at helloworldHF.asm, I've commented where I think the "header" and "footer" should be. This will definitely not be the footer for the full implementation, but you can do it now just to get it working!
+	[4] This means the only "body" you'll be generating will be one variable declaration in the .data section.
+
+Ya dig?
+
+Better documentation is coming, I promise
