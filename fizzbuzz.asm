@@ -8,25 +8,11 @@
 SECTION .data
 fizz        db      'Fizz', 0h    ; a message string
 buzz        db      'Buzz', 0h    ; a message string
-;chk         db      100
  
 SECTION .text
 global  start
  
 start:
-    pop     rsi            ; first value on the stack is the number of arguments
-    mov     r11,100
-
-.nextArg:
-    cmp     rsi, 0h        ; check to see if we have any arguments left
-    jz      .noMoreArgs    ; if zero flag is set jump to noMoreArgs label (jumping over the end of the loop)
-    pop     rax            ; pop the next argument off the stack
-;    mov     r11, rax
-    call    sprintLF       ; call our print with linefeed function
-    dec     rsi            ; decrease rsi (number of arguments left) by 1
-    jmp     .nextArg       ; jump to nextArg label
- 
-.noMoreArgs:
 
     mov     r9, 0          ; initialise our checkFizz boolean variable
     mov     r10, 0         ; initialise our checkBuzz boolean variable
@@ -71,7 +57,7 @@ nextNumber:
     mov     rax, rsp       ; get the stack pointer (address on the stack of our linefeed char)
     call    sprint         ; call our string printing function to print a line feed
     pop     rax            ; pop the stack so we don't waste resources
-    cmp     rsi, r11       ; compare if our counter is equal to r11
+    cmp     rsi, 100       ; compare if our counter is equal to r11
     jne     nextNumber     ; if not equal jump to the start of the loop
  
     call    quit           ; else call our quit function
