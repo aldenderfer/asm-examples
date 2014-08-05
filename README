@@ -22,7 +22,7 @@ WELCOME to terribly documented code. Use this as an example of how not to descri
 			Then you can call it with:
 			-- "./asm64.sh helloworld"
 
-HERE IS SPECULATION SECTION, WHERE I CONJECT ON HOW TO INCLUDE ASM() EMITS IN YOUR COMPILER:
+SPECULATION SECTION (THIS WILL WORK):
 
 I think the first step is just to get your program to print one goddamn line using assembly. Set up as follows:
 	[1] Your example code should only have one print statement.
@@ -32,4 +32,4 @@ I think the first step is just to get your program to print one goddamn line usi
 
 Ya dig?
 
-Better documentation is coming, I promise
+Better documentation is coming, I promise.

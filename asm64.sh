@@ -1,11 +1,4 @@
 #!/bin/bash
-# ------------------------------------------------------
-# x86-64 ASM in OSX
-# This script takes care of assembling, linking, and running
-# To use: call "./asm64.sh [filename]"
-# Do NOT include file extension! This was done for the sake of brevity.
-# If you get a "permission denied" error, run "chmod 777 asm64.sh" to fix permissions.
-# ------------------------------------------------------
 
 function error_exit
 {
@@ -16,6 +9,11 @@ function error_exit
 function helpme
 {
 	echo "usage: filename (no extension)"
+	echo "x86-64 ASM in OSX"
+	echo "This script takes care of assembling, linking, and running"
+	echo "To use: call './asm64.sh [filename]'"
+	echo "Do NOT include file extension! This was done for the sake of brevity."
+	echo "If you get a 'permission denied' error, run 'chmod 777 asm64.sh' to fix permissions."
 	exit 0
 }
 
@@ -26,10 +24,12 @@ function run
 		error_exit "--- nasm fails. exiting."
 	fi
 	ld -macosx_version_min 10.6 ${OUTFILE}.o
+	# ld -macosx_version_min 10.6 -e start -o ${OUTFILE} ${OUTFILE}.o
 	if [ "$?" = "1" ]; then
 		error_exit "--- linking fails. exiting."
 	fi
 	./a.out
+	# ./${OUTFILE}
 	if [ "$?" = "1" ]; then
 		error_exit "--- final run call fails. exiting."
 	fi
